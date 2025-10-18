@@ -1,12 +1,14 @@
 body {
+  margin: 0;
+  padding: 0;
   background-color: beige;
 }
 .game-container {
   display: flex;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 0;
   flex-direction: column;
-  width: 652px;
+  width: 585px;
   margin: auto;
 }
 .game-title {
@@ -21,7 +23,7 @@ body {
   font-family: upheaval;
   margin: 5px;
   align-self: flex-end;
-  color: #087575;
+  color: #5bb;
   flex-direction: column;
   align-items: flex-end;
 }
