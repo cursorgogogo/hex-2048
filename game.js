@@ -324,6 +324,11 @@ window.onload = function() {
     gameEnded = false;
     game.input.onTap.add(onTap, this);
     game.stage.backgroundColor = "#f5f5dc";
+    
+    // Add New Game button event listener
+    document.getElementById('new-game-btn').addEventListener('click', function() {
+      startNewGame();
+    });
   }
 
   function moveTowards (direction) {
@@ -397,6 +402,21 @@ window.onload = function() {
     return true;
   }
 
+  function startNewGame() {
+    // Clear any existing instruction displays
+    if (typeof instructionsDisplay != "undefined" && instructionsDisplay.parent != null) {
+      instructionsDisplay.destroy(true);
+    }
+    
+    // Clear localStorage to start fresh
+    localStorage.clear();
+    
+    // Reset game state
+    setUpGrid();
+    gameEnded = false;
+    game.world.bringToTop(gameDisplay);
+  }
+
   function displayEnding() {
     instructionsDisplay = game.add.group();
     var bar = game.add.graphics();
@@ -442,13 +462,7 @@ window.onload = function() {
     } else {
       displayEnding();
       if (enterKey.isDown) {
-        if (typeof instructionsDisplay != "undefined" && instructionsDisplay.parent != null) {
-          instructionsDisplay.destroy(true);
-        }
-        localStorage.clear();
-        setUpGrid();
-        gameEnded = false;
-        game.world.bringToTop(gameDisplay);
+        startNewGame();
       }
     }
   }
